@@ -1,1 +1,1 @@
-# simple_login
+# WeGetFit
