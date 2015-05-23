@@ -45,10 +45,14 @@ app.use("/", function(req, res, next) {
 
     next();
 });
+// Make connection to main page
+app.get("/", function(req, res) {
+    res.sendFile(path.join(views, "Htmls/home.html"));
+});
 
 // have same template as login
 app.get("/signup", function(req, res) {
-    res.sendFile(path.join(views, "signup.html"));
+    res.sendFile(path.join(views, "Htmls/signup.html"));
 });
 
 // add unique user to database
@@ -62,22 +66,6 @@ app.post("/signup", function(req, res) {
         });
 });
 
-// // where the user submits the sign-up form
-// app.post("/users", function(req, res) {
-
-//     // grab the user from the params
-//     var user = req.body.user;
-
-//     // create the new user
-//     db.User.
-//     createSecure(user.email, user.password,
-//         function() {
-//             res.send("SIGNED UP!");
-//         });
-// });
-
-// we will type in user, password and email into
-// a form then post it to this route to login
 app.post("/login", function(req, res) {
     var user = req.body.user;
 
@@ -97,7 +85,7 @@ app.get("/profile", function(req, res) {
 });
 
 app.get("/login", function(req, res) {
-    res.sendFile(path.join(views, "login.html"));
+    res.sendFile(path.join(views, "Htmls/login.html"));
 
 });
 

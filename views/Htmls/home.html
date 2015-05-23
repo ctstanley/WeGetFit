@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WeGetF.it</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+  <!-- Underscore -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <!-- catchphrase.ly -->
+  <link rel="stylesheet" type="text/css" href="..views/CSS/main.css">
+  <script src="../Javascripts/app.js"></script>
+</head>
+<body>
+  <div class="jumbotron">
+      <h1>WeGetF.it</h1>
+      <h2>a community-based fitness app<h2>
+      <!-- Split button -->
+        <div class="btn-group">
+              <button type="button" class="btn btn-danger btn-md" value='Reset' id = "reset">
+                  <span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span> Signup</button>
+              <button type="button" class="btn btn-danger">Login</button>
+              <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                  <span class="caret"></span>
+                  <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Email</a></li>
+                <li><a href="#">Password</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Need signin button here</a></li>
+              </ul>
+        </div>
+        </div>
+  <div id="page-wrapper" class="well">
+  
+      <!-- new post -->
+      <form id="phrase-form" class="form-inline">
+        <input name="word" type="text" class="form-control" id="new-phrase" placeholder="Place">
+        <input name="definition" class="form-control" placeholder="Time">
+        <button type="submit" class="btn btn-default">Add event</button>
+      </form>
+      
+
+
+      <!-- main content: phrase list group -->
+      <ul class="list-group" id="phrase-ul">
+      </ul>
+  </div>
+</body>
+  <!-- Underscore templates -->
+  <!-- <span class="label label-default">Default</span> -->
+  <script type="text/template" id="phrases-template">
+    <% _.each(collection, function(item){ %>
+      <!-- li for each item -->
+      <li class='list-group-item'><%= item.word %>
+        <!-- label for definiton -->
+        <span class="label label-default"><%= item.definition%></span>
+        
+        <div class="buttons">
+          <!-- edit link (pencil icon) to toggle form -->
+          <a id="toggler" data-toggle="collapse" class="active" data-target="#update-<%=item._id%>" >
+            <span class="glyphicon glyphicon-pencil edit" ></span>
+          </a>
+          
+          <!-- delete button w/ registered onclick function -->
+          <button data-id="<%= item._id %>" onclick="Phrases.delete(this)" type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <!-- update phrase form -->
+        <div id="update-<%=item._id%>" class="collapse">
+          <form id="update-form-<%=item._id%>" data-phraseid="<%=item._id%>" class="form-inline" onsubmit="Phrases.update(event, this)">
+            <input name="word" type="text" class="form-control" placeholder="New word?">
+            <input name="definition" class="form-control" placeholder="New definition?">
+            <button type="submit" class="btn btn-default">Update phrase</button>
+          </form>
+        </div> 
+      </li>
+    <% }); %>
+  </script>
+</html>
