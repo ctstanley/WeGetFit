@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/simple_login");
+mongoose.connect("mongodb://localhost/WeGetFit");
 
 
 module.exports.User = require("./user");

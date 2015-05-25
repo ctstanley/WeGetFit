@@ -14,29 +14,107 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   <!-- catchphrase.ly -->
   <link rel="stylesheet" type="text/css" href="..views/CSS/main.css">
-  <script src="../Javascripts/app.js"></script>
+  <script src="..views/Javascripts/home.js"></script>
 </head>
 <body>
   <div class="jumbotron">
       <h1>WeGetF.it</h1>
-      <h2>a community-based fitness app<h2>
-      <!-- Split button -->
-        <div class="btn-group">
-              <button type="button" class="btn btn-danger btn-md" value='Reset' id = "reset">
-                  <span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span> Signup</button>
-              <button type="button" class="btn btn-danger">Login</button>
-              <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  <span class="caret"></span>
-                  <span class="sr-only">Toggle Dropdown</span>
-              </button>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Email</a></li>
-                <li><a href="#">Password</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Need signin button here</a></li>
-              </ul>
-        </div>
-        </div>
+      <p>a community-based fitness app</p>
+      <!-- Roq -->
+   <div class="row">
+      <div class="col-md-12">
+         <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+               <ul class="nav navbar-nav">
+                  <li class="dropdown">
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
+                     <ul class="dropdown-menu">
+                        <li><a href="#">Running</a></li>
+                        <li><a href="#">Biking</a></li>
+                        <li><a href="#"></a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">One more separated link</a></li>
+                     </ul>
+                  </li>
+               </ul>
+               <form class="navbar-form navbar-left" role="search">
+                  <div class="form-group">
+                     <input type="text" class="form-control" placeholder="Zip Code">
+                  </div>
+                  <button type="submit" class="btn btn-default">Submit</button>
+               </form>
+               <ul class="nav navbar-nav navbar-right">
+                  <li class="dropdown">
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign Up <b class="caret"></b></a>
+                     <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
+                        <li>
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                                    <div class="form-group">
+                                       <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                                       <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+                                    </div>
+                                    <div class="form-group">
+                                       <label class="sr-only" for="exampleInputPassword2">Password</label>
+                                       <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                                    </div>
+                                    <div class="form-group">
+                                       <button type="submit" class="btn btn-success btn-block">Sign Up</button>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                           <input class="btn btn-primary btn-block" type="button" id="sign-in-google" value="Sign Up with Facebook NA">
+                        </li>
+                     </ul>
+                  </li>
+                  <li class="dropdown">
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
+                     <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
+                        <li>
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                                    <div class="form-group">
+                                       <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                                       <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+                                    </div>
+                                    <div class="form-group">
+                                       <label class="sr-only" for="exampleInputPassword2">Password</label>
+                                       <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                                    </div>
+                                    <div class="checkbox">
+                                       <label>
+                                       <input type="checkbox"> Remember me
+                                       </label>
+                                    </div>
+                                    <div class="form-group">
+                                       <button type="submit" class="btn btn-success btn-block">Sign in</button>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                           <input class="btn btn-primary btn-block" type="button" id="sign-in-google" value="Sign In with Facebook NA">
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+         </nav>
+      </div>
+   </div>
+</div>
   <div id="page-wrapper" class="well">
   
       <!-- new post -->
