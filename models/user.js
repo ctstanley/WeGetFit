@@ -6,9 +6,10 @@ var userSchema = new mongoose.Schema({
     email: String,
     passwordDigest: String
 });
+
 // signup
 userSchema.statics.createSecure = function(email, password, cb) {
-    var that = this; // save context in this var
+    var that = this;
     // saves the user email and hashes the password
     bcrypt.genSalt(function(err, salt) {
         bcrypt.hash(password, salt, function(err, hash) {

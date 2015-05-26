@@ -12,8 +12,8 @@
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="views/CSS/main.css">
-  <script type="text/javascript" src="views/Javascripts/home.js"></script>
+  <link rel="stylesheet" type="text/css" href="../CSS/main.css">
+  <script src="../Javascripts/home.js"></script>
 </head>
 <body>
   <div class="jumbotron">
@@ -34,8 +34,6 @@
                         <li><a href="#"></a></li>
                         <li class="divider"></li>
                         <li><a href="#">Separated link</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">One more separated link</a></li>
                      </ul>
                   </li>
                </ul>
@@ -52,7 +50,7 @@
                         <li>
                            <div class="row">
                               <div class="col-md-12">
-                                 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                                 <form class="form" role="form" method="post" action="#" accept-charset="UTF-8" id="signup-nav">
                                     <div class="form-group">
                                        <label class="sr-only" for="exampleInputEmail2">Email address</label>
                                        <input type="email" class="form-control" id="exampleInputEmail2" name='user[email]' placeholder="Email address" required>
@@ -80,7 +78,7 @@
                         <li>
                            <div class="row">
                               <div class="col-md-12">
-                                 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                                 <form class="form" role="form" method="post" action="#" accept-charset="UTF-8" id="login-nav">
                                     <div class="form-group">
                                        <label class="sr-only" for="exampleInputEmail2">Email address</label>
                                        <input type="email" class="form-control" id="exampleInputEmail2" name='user[email]' placeholder="Email address" required>
@@ -109,7 +107,6 @@
                   </li>
                </ul>
             </div>
-            <!-- /.navbar-collapse -->
          </nav>
       </div>
    </div>
@@ -117,27 +114,28 @@
   <div id="page-wrapper" class="well">
   
       <!-- new post -->
-      <form id="phrase-form" class="form-inline">
-        <input name="word" type="text" class="form-control" id="new-phrase" placeholder="Place">
+      <form id="event-form" class="form-inline">
+        <input name="word" type="text" class="form-control" id="new-event" placeholder="Place">
         <input name="definition" class="form-control" placeholder="Time">
         <button type="submit" class="btn btn-default">Add event</button>
       </form>
       
-
-
-      <!-- main content: phrase list group -->
-      <ul class="list-group" id="phrase-ul">
-      </ul>
+  </div>
+  <!-- main content: event thumb group -->
+  <div class="container-fluid">
+        <div class="row" id="render-group">
+        </div>
   </div>
 </body>
   <!-- Underscore templates -->
-  <!-- <span class="label label-default">Default</span> -->
-  <script type="text/template" id="phrases-template">
+  <script type="text/template" id="events-template">
     <% _.each(collection, function(item){ %>
-      <!-- li for each item -->
-      <li class='list-group-item'><%= item.word %>
+      <!-- thumbnail for each item -->
+      <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+      <a class="thumbnail" href="#">
+      <%= item.place %>
         <!-- label for definiton -->
-        <span class="label label-default"><%= item.definition%></span>
+        <span class="label label-default"><%= item.time%></span>
         
         <div class="buttons">
           <!-- edit link (pencil icon) to toggle form -->
@@ -146,19 +144,20 @@
           </a>
           
           <!-- delete button w/ registered onclick function -->
-          <button data-id="<%= item._id %>" onclick="Phrases.delete(this)" type="button" class="close" aria-label="Close">
+          <button data-id="<%= item._id %>" onclick="Events.delete(this)" type="button" class="close" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <!-- update phrase form -->
         <div id="update-<%=item._id%>" class="collapse">
-          <form id="update-form-<%=item._id%>" data-phraseid="<%=item._id%>" class="form-inline" onsubmit="Phrases.update(event, this)">
-            <input name="word" type="text" class="form-control" placeholder="New word?">
-            <input name="definition" class="form-control" placeholder="New definition?">
+          <form id="update-form-<%=item._id%>" data-phraseid="<%=item._id%>" class="form-inline" onsubmit="Events.update(event, this)">
+            <input name="place" type="text" class="form-control" placeholder="Place">
+            <input name="time" class="form-control" placeholder="Time">
             <button type="submit" class="btn btn-default">Update phrase</button>
           </form>
         </div> 
-      </li>
+        </a>
+      </div>
     <% }); %>
   </script>
 </html>
