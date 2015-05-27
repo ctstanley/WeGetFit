@@ -81,7 +81,7 @@ app.use("/", function(req, res, next) {
     next();
 });
 // Make connection to main page
-app.get("/", function(req, res) {
+app.get("/home", function(req, res) {
     res.sendFile(path.join(views, "Htmls/home.html"));
 });
 
@@ -104,7 +104,7 @@ app.post("/events", function (req, res){
 
 app.post("/update", function(req, res){
   console.log("updating event with these params", req.body);
-  db.Events.findById(req.body.id, function (err, event) {
+  db.Events.findById(req.body._id, function (err, event) {
     if (err) {
       res.status(500).send({ error: 'database find error' });
     } else {
@@ -139,7 +139,7 @@ app.delete("/events/:id", function (req, res){
 });
 
 // have same template as login
-app.get("/signup", function(req, res) {
+app.get("/", function(req, res) {
     res.sendFile(path.join(views, "Htmls/signup.html"));
 });
 
@@ -163,7 +163,7 @@ app.post("/login", function(req, res) {
             function(err, user) {
                 console.log("LOGGING IN!");
                 req.login(user);
-                res.redirect("/profile");
+                res.redirect("/home");
             });
 });
 

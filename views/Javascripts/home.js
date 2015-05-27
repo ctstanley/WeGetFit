@@ -1,12 +1,8 @@
 // for menu after Jumbotron
 $(function(){
-	alert("loaded");
     //Handles menu drop down
     $('.dropdown-menu').find('form').click(function (e) {
         e.stopPropagation();
-    });
-    $('body').css({
-    				'background-image' : 'url(https://placekitten.com/1350/3000)'
     });
     Events.all();
     View.init();
@@ -20,7 +16,7 @@ View.init = function() {
 		var eventParams = $(this).serialize();
 		Events.create(eventParams);
 		$("#event-form")[0].reset();
-		$("#new-event").focus();
+		$("#place-input").focus();
 	});
 }
 

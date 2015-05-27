@@ -1,12 +1,24 @@
 .jumbotron {
-	background-color: #663399;
+	background-color: #335467;
 	opacity: 0.5;
-	color: white
+	color: white;
+	max-width: 100%;
+	text-indent: 40%
 }
 body { 
 	margin-bottom: 30px;
-	height: 3000px }
+	background-color: black;
+	max-width: 100%
+}
 #login-nav input { margin-bottom: 15px }
-.col-lg-3 {
-	background-color: white
+.thumbnail {
+	background-color: white;
+	padding: 10%;
+	max-height: 100px
+}
+.container-fluid {
+	height: 100%
+}
+#prime_nav {
+	max-width: 100%
 }

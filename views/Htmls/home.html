@@ -19,24 +19,13 @@
   <div class="jumbotron">
       <h1>WeGetF.it</h1>
       <p>a community-based fitness app</p>
-      <!-- Nav bar with all features of website on bottom -->
+</div>
+<!-- Nav bar with all features of website on bottom -->
    <div class="row">
       <div class="col-md-12">
-         <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+         <nav class="navbar navbar-default navbar-fixed-bottom" id="prime_nav" role="navigation">
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-               <ul class="nav navbar-nav">
-                  <li class="dropdown">
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
-                     <ul class="dropdown-menu">
-                        <li><a href="#">Running</a></li>
-                        <li><a href="#">Biking</a></li>
-                        <li><a href="#"></a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                     </ul>
-                  </li>
-               </ul>
                <form class="navbar-form navbar-left" role="search">
                   <div class="form-group">
                      <input type="text" class="form-control" placeholder="Zip Code">
@@ -45,63 +34,41 @@
                </form>
                <ul class="nav navbar-nav navbar-right">
                   <li class="dropdown">
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign Up <b class="caret"></b></a>
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Post <b class="caret"></b></a>
                      <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
                         <li>
                            <div class="row">
                               <div class="col-md-12">
-                                 <form class="form" role="form" method="post" action="#" accept-charset="UTF-8" id="signup-nav">
+                                 <form class="form" role="form" method="post" action="#" accept-charset="UTF-8" id="event-form">
                                     <div class="form-group">
-                                       <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                       <input type="email" class="form-control" id="exampleInputEmail2" name='user[email]' placeholder="Email address" required>
+                                       <label class="sr-only" for="place-input">Place</label>
+                                       <input type="text" class="form-control" id="place-input" name='place' placeholder="Location" required>
                                     </div>
                                     <div class="form-group">
-                                       <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                       <input type="password" class="form-control" id="exampleInputPassword2" name='user[password]'  placeholder="Password" required>
-                                    </div>
-                                    <div class="form-group">
-                                       <button type="submit" class="btn btn-success btn-block">Sign Up</button>
-                                    </div>
-                                 </form>
-                              </div>
-                           </div>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                           <input class="btn btn-primary btn-block" type="button" id="sign-in-facebook" value="Sign Up with Facebook NA">
-                        </li>
-                     </ul>
-                  </li>
-                  <li class="dropdown">
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
-                     <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
-                        <li>
-                           <div class="row">
-                              <div class="col-md-12">
-                                 <form class="form" role="form" method="post" action="#" accept-charset="UTF-8" id="login-nav">
-                                    <div class="form-group">
-                                       <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                       <input type="email" class="form-control" id="exampleInputEmail2" name='user[email]' placeholder="Email address" required>
-                                    </div>
-                                    <div class="form-group">
-                                       <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                       <input type="password" class="form-control" id="exampleInputPassword2" name='user[password]' placeholder="Password" required>
+                                       <label class="sr-only" for="time-input">Time</label>
+                                       <input type="text" class="form-control" id="time-imput" name='time' placeholder="Time" required>
                                     </div>
                                     <div class="checkbox">
                                        <label>
-                                       <input type="checkbox"> Remember me
+                                       <input type="checkbox"> Running
+                                       </label>
+                                    </div>
+                                    <div class="checkbox">
+                                       <label>
+                                       <input type="checkbox"> Cycling
+                                       </label>
+                                    </div>
+                                    <div class="checkbox">
+                                       <label>
+                                       <input type="checkbox"> Tenis
                                        </label>
                                     </div>
                                     <div class="form-group">
-                                       <button type="submit" class="btn btn-success btn-block">Sign in</button>
+                                       <button type="submit" class="btn btn-success btn-block">Add event</button>
                                     </div>
                                  </form>
                               </div>
                            </div>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                           <input class="btn btn-primary btn-block" type="button" id="sign-in-facebook" value="Sign In with Facebook NA">
                         </li>
                      </ul>
                   </li>
@@ -110,17 +77,6 @@
          </nav>
       </div>
    </div>
-</div>
-  <div id="page-wrapper" class="well">
-  
-      <!-- new post -->
-      <form id="event-form" class="form-inline">
-        <input name="place" type="text" class="form-control" id="new-event" placeholder="Place">
-        <input name="time" class="form-control" placeholder="Time">
-        <button type="submit" class="btn btn-default">Add event</button>
-      </form>
-      
-  </div>
   <!-- main content: event thumb group -->
   <div class="container-fluid">
         <div class="row" id="render-group">
@@ -138,24 +94,11 @@
         <span class="label label-default"><%= item.time%></span>
         
         <div class="buttons">
-          <!-- edit link (pencil icon) to toggle form -->
-          <a id="toggler" data-toggle="collapse" class="active" data-target="#update-<%=item._id%>" >
-            <span class="glyphicon glyphicon-pencil edit" ></span>
-          </a>
-          
           <!-- delete button w/ registered onclick function -->
           <button data-id="<%= item._id %>" onclick="Events.delete(this)" type="button" class="close" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <!-- update phrase form -->
-        <div id="update-<%=item._id%>" class="collapse">
-          <form id="update-form-<%=item._id%>" data-phraseid="<%=item._id%>" class="form-inline" onsubmit="Events.update(event, this)">
-            <input name="place" type="text" class="form-control" placeholder="Place">
-            <input name="time" class="form-control" placeholder="Time">
-            <button type="submit" class="btn btn-default">Update event</button>
-          </form>
-        </div> 
         </a>
       </div>
     <% }); %>
