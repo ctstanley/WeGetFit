@@ -4,14 +4,8 @@ $(function() {
     $('.dropdown-menu').find('form').click(function(e) {
         e.stopPropagation();
     });
-    $('#logout').on('click', function() {
-    	localStorage.isMember = undefined;
-    	checkLocalStorage();
-    	$('#myModal').modal({
-    		backdrop: "static",
-    		show: true
-    	});
-    });
+    Events.all();
+    View.init();
 });
 
 var successfulLogin = function () {
@@ -83,18 +77,3 @@ Events.delete = function(event) {
     });
 }
 
-Events.update = function(e, form) {
-    e.preventDefault();
-    var $form = $(form);
-    var eventId = $form.data().eventid;
-    var newPlace = $form.find("input[name='place']").val();
-    var newTime = $form.find("input[name='time']").val();
-    $.post("/update", {
-        id: eventId,
-        place: newPlace,
-        time: newTime
-    })
-        .done(function(res) {
-            Events.all();
-        });
-};

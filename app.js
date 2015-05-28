@@ -23,35 +23,35 @@ app.use(session({
 var path = require("path");
 var views = path.join(process.cwd(), "views");
 
-// pre-seeded post data
-var events = [{
-    id: 0,
-    place: "Dolores Park",
-    time: "9:00am"
-}, {
-    id: 1,
-    place: "Potrero Hill",
-    time: "6:00am"
-}, {
-    id: 2,
-    place: "Golden Gate Panhandle",
-    time: "5:30pm"
-}, {
-    id: 3,
-    place: "Presidio",
-    time: "7:00pm"
-}];
+// // pre-seeded post data
+// var events = [{
+//     id: 0,
+//     place: "Dolores Park",
+//     time: "9:00am"
+// }, {
+//     id: 1,
+//     place: "Potrero Hill",
+//     time: "6:00am"
+// }, {
+//     id: 2,
+//     place: "Golden Gate Panhandle",
+//     time: "5:30pm"
+// }, {
+//     id: 3,
+//     place: "Presidio",
+//     time: "7:00pm"
+// }];
 
-// add ps data to the data base
-var addPosts = function(eventList) {
-    for (var i = 0; i < eventList.length; i++) {
-        db.Events.create({
-            place: eventList[i].place,
-            time: eventList[i].time
-        });
-    }
-};
-addPosts(events);
+// // add ps data to the data base
+// var addPosts = function(eventList) {
+//     for (var i = 0; i < eventList.length; i++) {
+//         db.Events.create({
+//             place: eventList[i].place,
+//             time: eventList[i].time
+//         });
+//     }
+// };
+// addPosts(events);
 
 
 // Make connection to main page
@@ -76,31 +76,6 @@ app.post("/events", function (req, res){
   res.send(JSON.stringify(newEvent));
 });
 
-app.post("/update", function(req, res){
-  console.log("updating event with these params", req.body);
-  db.Events.findById(req.body._id, function (err, event) {
-    if (err) {
-      res.status(500).send({ error: 'database find error' });
-    } else {
-      if (req.body.place) {
-        // if form gave us a new place, update the event's place
-        event.place = req.body.place;
-      }
-      if (req.body.time){
-        // if form gave us a time, update that
-        event.time = req.body.time;
-      }
-      // save the updated document
-      event.save(function (err) {
-        if (err){
-          res.status(500).send({ error: 'database save error' });
-        }
-      });
-    }
-  });
-  res.status(200).send();
-});
-
 app.delete("/events/:id", function (req, res){
   // remove item in the db matching the id
   db.Events.remove({_id: req.params.id}, function(err, results){
@@ -114,7 +89,7 @@ app.delete("/events/:id", function (req, res){
 
 // have same template as login
 app.get("/", function(req, res) {
-    res.sendFile(path.join(views, "Htmls/home.html"));
+    res.sendFile(path.join(views, "Htmls/home1.html"));
 });
 
 // add unique user to database
@@ -138,7 +113,7 @@ app.post("/login", function(req, res) {
             function(err, user) {
                 console.log("LOGGING IN!");
                 // req.login(user);
-                res.redirect("/");
+                res.redirect("/home");
             });
 });
 
