@@ -114,6 +114,7 @@ app.post("/login", function(req, res) {
                 console.log("LOGGING IN!");
                 // req.login(user);
                 res.redirect("/home");
+                localStorage.isMember = "true";
             });
 });
 
