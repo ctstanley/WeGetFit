@@ -122,6 +122,4 @@ app.get("/login", function(req, res) {
 
 });
 
-app.listen(3000, function() {
-    console.log("SERVER RUNNING");
-});
+app.listen(process.env.PORT || 3000);
