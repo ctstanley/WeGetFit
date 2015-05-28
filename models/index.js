@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/WeGetFit");
+mongoose.connect(process.env.MONGOLAB_URI ||
+    process.env.MONGOHQ_URL || "mongodb://localhost/WeGetFit");
 
 
 module.exports.User = require("./user");
