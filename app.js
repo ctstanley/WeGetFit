@@ -53,33 +53,7 @@ var addPosts = function(eventList) {
 };
 addPosts(events);
 
-app.use("/", function(req, res, next) {
 
-    // logs in a user by saving their
-    // userId
-    req.login = function(user) {
-        // setting user's seesion to store their _id
-        req.session.userId = user._id;
-    };
-    // fetches the user associated with the current session
-    req.currentUser = function(cb) {
-        db.User.
-        findOne({
-                _id: req.session.userId
-            },
-            function(err, user) {
-                req.user = user;
-                cb(null, user);
-            })
-    };
-
-    req.logout = function() {
-        req.session.userId = null;
-        req.user = null;
-    }
-
-    next();
-});
 // Make connection to main page
 app.get("/home", function(req, res) {
     res.sendFile(path.join(views, "Htmls/home.html"));
@@ -140,17 +114,18 @@ app.delete("/events/:id", function (req, res){
 
 // have same template as login
 app.get("/", function(req, res) {
-    res.sendFile(path.join(views, "Htmls/signup.html"));
+    res.sendFile(path.join(views, "Htmls/home.html"));
 });
 
 // add unique user to database
 app.post("/signup", function(req, res) {
     var user = req.body.user;
-    console.log(req.body.user);
+    // console.log(req.body.user);
     db.User.
     createSecure(user.email, user.password,
         function() {
-            res.redirect("/login");
+          console.log(user.email)
+            res.redirect("/");
         });
 });
 
@@ -162,19 +137,13 @@ app.post("/login", function(req, res) {
         .authenticate(user.email, user.password,
             function(err, user) {
                 console.log("LOGGING IN!");
-                req.login(user);
-                res.redirect("/home");
+                // req.login(user);
+                res.redirect("/");
             });
 });
 
-app.get("/profile", function(req, res) {
-    req.currentUser(function(err, user) {
-        res.send("Welcome " + user.email)
-    });
-});
-
 app.get("/login", function(req, res) {
-    res.sendFile(path.join(views, "Htmls/login.html"));
+    res.sendFile(path.join(views, "Htmls/home.html"));
 
 });
 

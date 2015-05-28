@@ -35,7 +35,7 @@ userSchema.statics.authenticate = function(email, password, cb) {
         }, // then if user exists with that email
         function(err, user) {
             if (user === null) {
-                throw new Error("Username does not exist");
+                console.log("Username does not exist");
             } else if (user.checkPassword(password)) { // verify password
                 cb(null, user); // send back that user
             }

@@ -16,6 +16,103 @@
   <script src="../Javascripts/home.js"></script>
 </head>
 <body>
+<!-- static navbar on the top with signup and signin -->
+<!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="modal fade bs-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+        <br>
+        <div class="bs-example bs-example-tabs">
+            <ul id="myTab" class="nav nav-tabs">
+              <li class="active"><a href="#signin" data-toggle="tab">Sign In</a></li>
+              <li class=""><a href="#signup" data-toggle="tab">Register</a></li>
+              <li class=""><a href="#why" data-toggle="tab">Why?</a></li>
+            </ul>
+        </div>
+      <div class="modal-body">
+        <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in" id="why">
+        <p>We need this information so that you can receive access to the site and its content. Rest assured your information will not be sold, traded, or given to anyone.</p>
+        </div>
+        <div class="tab-pane fade active in" id="signin">
+            <form class="form-horizontal" method="post" action="/login">
+            <fieldset>
+            <!-- Sign In Form -->
+            <!-- Text input-->
+            <div class="control-group">1
+              <label class="control-label" for="Email">Email:</label>
+              <div class="controls">
+                <input id="Email" name="user[email]" class="form-control" type="email" placeholder="Email" class="input-large" required="">
+              </div>
+            </div>
+
+            <!-- Password input-->
+            <div class="control-group">
+              <label class="control-label" for="passwordinput">Password:</label>
+              <div class="controls">
+                <input required="" id="passwordinput" name="user[password]" class="form-control" type="password" placeholder="Password" class="input-medium">
+              </div>
+            </div>
+
+            <!-- Button -->
+            <div class="control-group">
+              <label class="control-label" for="signin"></label>
+              <div class="controls">
+                <button id="signin" name="signin" class="btn btn-success">Sign In</button>
+              </div>
+            </div>
+            </fieldset>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="signup">
+            <form class="form-horizontal" method="post" action="/signup">
+            <fieldset>
+            <!-- Sign Up Form -->
+            <!-- Text input-->
+            <div class="control-group">
+              <label class="control-label" for="Email">Email:</label>
+              <div class="controls">
+                <input id="Email" name="user[email]" class="form-control" type="email" placeholder="Email" class="input-large" required="">
+              </div>
+            </div>
+            
+            <!-- Password input-->
+            <div class="control-group">
+              <label class="control-label" for="password">Password:</label>
+              <div class="controls">
+                <input id="password" name="user[password]" class="form-control" type="password" placeholder="Password" class="input-large" required="">
+                <em>1-8 Characters</em>
+              </div>
+            </div>
+                
+            <!-- Multiple Radios (inline) -->
+            <br>
+            <div class="control-group">
+              <label class="control-label" for="humancheck">Humanity Check:</label>
+              <div class="controls">
+                <label class="radio inline" for="humancheck-0">
+                  <input type="radio" name="humancheck" id="humancheck-0" value="robot" checked="checked">I'm a Robot</label>
+                <label class="radio inline" for="humancheck-1">
+                  <input type="radio" name="humancheck" id="humancheck-1" value="human">I'm Human</label>
+              </div>
+            </div>
+            
+            <!-- Button -->
+            <div class="control-group">
+              <label class="control-label" for="confirmsignup"></label>
+              <div class="controls">
+                <button id="confirmsignup" name="confirmsignup" class="btn btn-success">Sign Up</button>
+              </div>
+            </div>
+            </fieldset>
+            </form>
+      </div>
+    </div>
+      </div>
+    </div>
+  </div>
+</div>
+
   <div class="jumbotron">
       <h1>WeGetF.it</h1>
       <p>a community-based fitness app</p>
@@ -24,8 +121,12 @@
    <div class="row">
       <div class="col-md-12">
          <nav class="navbar navbar-default navbar-fixed-bottom" id="prime_nav" role="navigation">
+
+                <div class="navbar-inner navbar-left col-md-2">
+                              <button type="submit" class="btn btn-success btn-block" id="logout">Logout</button>
+                  </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="navbar-inner" id="bs-example-navbar-1">
                <form class="navbar-form navbar-left" role="search">
                   <div class="form-group">
                      <input type="text" class="form-control" placeholder="Zip Code">
@@ -33,13 +134,12 @@
                   <button type="submit" class="btn btn-default">Submit</button>
                </form>
                <ul class="nav navbar-nav navbar-right">
-                  <li class="dropdown">
+                  <li class="dropdown" id="post_form">
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Post <b class="caret"></b></a>
                      <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
                         <li>
-                           <div class="row">
                               <div class="col-md-12">
-                                 <form class="form" role="form" method="post" action="#" accept-charset="UTF-8" id="event-form">
+                                 <form class="form" role="form" method="post" action="/events" accept-charset="UTF-8" id="event-form">
                                     <div class="form-group">
                                        <label class="sr-only" for="place-input">Place</label>
                                        <input type="text" class="form-control" id="place-input" name='place' placeholder="Location" required>
@@ -60,7 +160,7 @@
                                     </div>
                                     <div class="checkbox">
                                        <label>
-                                       <input type="checkbox"> Tenis
+                                       <input type="checkbox"> Tennis
                                        </label>
                                     </div>
                                     <div class="form-group">
@@ -88,7 +188,7 @@
     <% _.each(collection, function(item){ %>
       <!-- thumbnail for each item -->
       <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-      <a class="thumbnail" href="#">
+      <a class="thumbnail">
       <%= item.place %>
         <!-- label for definiton -->
         <span class="label label-default"><%= item.time%></span>
