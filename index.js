@@ -23,35 +23,39 @@ app.use(session({
 var path = require("path");
 var views = path.join(process.cwd(), "views");
 
-// // pre-seeded post data
-// var events = [{
-//     id: 0,
-//     place: "Dolores Park",
-//     time: "9:00am"
-// }, {
-//     id: 1,
-//     place: "Potrero Hill",
-//     time: "6:00am"
-// }, {
-//     id: 2,
-//     place: "Golden Gate Panhandle",
-//     time: "5:30pm"
-// }, {
-//     id: 3,
-//     place: "Presidio",
-//     time: "7:00pm"
-// }];
+// pre-seeded post data
+var events = [{
+    id: 0,
+    place: "Dolores Park",
+    time: "9:00am",
+    comment: "test"
+}, {
+    id: 1,
+    place: "Potrero Hill",
+    time: "6:00am",
+    comment: "test"
+}, {
+    id: 2,
+    place: "Golden Gate Panhandle",
+    time: "5:30pm",
+    comment: "test"
+}, {
+    id: 3,
+    place: "Presidio",
+    time: "7:00pm",
+    comment: "test"
+}];
 
-// // add ps data to the data base
-// var addPosts = function(eventList) {
-//     for (var i = 0; i < eventList.length; i++) {
-//         db.Events.create({
-//             place: eventList[i].place,
-//             time: eventList[i].time
-//         });
-//     }
-// };
-// addPosts(events);
+// add ps data to the data base
+var addPosts = function(eventList) {
+    for (var i = 0; i < eventList.length; i++) {
+        db.Events.create({
+            place: eventList[i].place,
+            time: eventList[i].time
+        });
+    }
+};
+addPosts(events);
 
 
 // Make connection to main page

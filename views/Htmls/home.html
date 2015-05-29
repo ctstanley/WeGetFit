@@ -129,7 +129,7 @@
                                     </div>
                                     <div class="form-group">
                                        <label class="sr-only" for="comment-input">Comment</label>
-                                       <input type="text" class="form-control" id="comment-imput" name='comment' placeholder="Comment" required>
+                                       <input type="text" class="form-control" id="comment-input" name='comment' placeholder="Comment" required>
                                     </div>
                                     <div class="form-group">
                                        <button type="submit" class="btn btn-success btn-block">Add event</button>
@@ -159,8 +159,8 @@
       <a class="thumbnail" >
       <%= item.place %>
         <!-- label for definiton -->
-        <span class="label label-default"><%= item.time%></span>
-        <span class="label label-alert"><%= item.comment%></span>
+        <span class="col-xs-offset-3"><%= item.time%></span>
+        <span class="col-md-4"><%= item.comment%></span>
         
         <div class="buttons">
           <!-- delete button w/ registered onclick function -->
