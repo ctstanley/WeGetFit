@@ -8,29 +8,6 @@ $(function() {
     View.init();
 });
 
-var successfulLogin = function () {
-    $('#myModal').slideUp().fadeOut(300);
-    $('div.modal-backdrop').fadeOut(500);
-    localStorage.setItem('isMember', true);
-    Events.all();
-    View.init();
-};
-
-var checkLocalStorage = function() {
-    var $loginModal = $loginModal || $('#myModal');
-    if (localStorage.isMember === undefined) {
-        var modaloptions = {
-                backdrop: "static",
-                show: true
-            }
-        window.setTimeout(function() {
-            $loginModal.modal(modaloptions);
-        }, 1000);
-    } else {
-    	successfulLogin();
-    };
-};
-
 function View() {};
 // post event form submit event listener
 View.init = function() {

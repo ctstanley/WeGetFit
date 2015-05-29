@@ -128,6 +128,10 @@
                                        <input type="text" class="form-control" id="time-imput" name='time' placeholder="Time" required>
                                     </div>
                                     <div class="form-group">
+                                       <label class="sr-only" for="comment-input">Comment</label>
+                                       <input type="text" class="form-control" id="comment-imput" name='comment' placeholder="Comment" required>
+                                    </div>
+                                    <div class="form-group">
                                        <button type="submit" class="btn btn-success btn-block">Add event</button>
                                     </div>
                                  </form>
@@ -152,25 +156,11 @@
     <% _.each(collection, function(item){ %>
       <!-- thumbnail for each item -->
       <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-      <a class="thumbnail" href>
+      <a class="thumbnail" >
       <%= item.place %>
         <!-- label for definiton -->
         <span class="label label-default"><%= item.time%></span>
-        <div class="checkbox">
-             <label>
-                <input type="checkbox"> Running
-              </label>
-        </div>
-        <div class="checkbox">
-          <label>
-          <input type="checkbox"> Cycling
-          </label>
-        </div>
-        <div class="checkbox">
-          <label>
-          <input type="checkbox"> Tennis
-          </label>
-        </div>
+        <span class="label label-alert"><%= item.comment%></span>
         
         <div class="buttons">
           <!-- delete button w/ registered onclick function -->

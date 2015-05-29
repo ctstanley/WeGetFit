@@ -4,7 +4,8 @@ var mongoose = require("mongoose");
 
 var EventSchema = new mongoose.Schema({
     place: String,
-    time: String
+    time: String,
+    comment: String
 });
 
 var Events = mongoose.model("Events", EventSchema);
