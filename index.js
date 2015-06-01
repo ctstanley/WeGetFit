@@ -158,4 +158,11 @@ app.get("/login", function(req, res) {
 
 });
 
+// logout
+app.post('/logout', function(req, res) {
+  var user = req.body.user;
+  req.logout(user);
+  res.redirect("/");
+});
+
 app.listen(process.env.PORT || 3000);
