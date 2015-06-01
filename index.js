@@ -20,6 +20,28 @@ app.use(session({
     saveUninitialized: true
 }));
 
+var loginHelpers = function (req, res, next) {
+  req.login = function (user) {
+    req.session.userId = user._id;
+    req.user = user;
+    return user;
+  };
+  req.logout = function() {
+    req.session.userId = null;
+    req.user = null;
+  };
+  req.currentUser = function(cb) {
+    var userId = req.session.userId;
+    db.User.
+      findOne({
+        _id: userId
+      }, cb);
+  };
+  next();
+};
+
+app.use(loginHelpers);
+
 var path = require("path");
 var views = path.join(process.cwd(), "views");
 
@@ -99,26 +121,31 @@ app.get("/", function(req, res) {
 // add unique user to database
 app.post("/signup", function(req, res) {
     var user = req.body.user;
-    // console.log(req.body.user);
+    console.log(user);
     db.User.
     createSecure(user.email, user.password,
-        function() {
-          console.log(user.email)
+        function (err, user) {
+          if (!err){
+            req.login(user);
+            res.redirect("/home");
+          } else {
             res.redirect("/");
+          }
         });
 });
 
 app.post("/login", function(req, res) {
     var user = req.body.user;
-
-
+    console.log(user);
     db.User
         .authenticate(user.email, user.password,
-            function(err, user) {
-                console.log("LOGGING IN!");
-                // req.login(user);
+            function (err, user) {
+              console.log("LOGGING IN!");
+              if (!err){
+                req.login(user);
                 res.redirect("/home");
-            });
+              } 
+    });
 });
 
 app.get("/login", function(req, res) {
