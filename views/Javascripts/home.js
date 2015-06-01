@@ -32,7 +32,7 @@ function Events() {};
 // parse and render
 Events.all = function() {
     $.get("/events", function(res) {
-        var events = JSON.parse(res);
+        var events = res;
         View.render(events, "render-group", "events-template");
     });
 }
