@@ -77,7 +77,7 @@ var addPosts = function(eventList) {
         });
     }
 };
-addPosts(events);
+// addPosts(events);
 
 
 // Make connection to main page
@@ -93,9 +93,9 @@ app.get("/home", function(req, res) {
 
 app.get("/events", function (req, res){
   // find all events
-  db.Events.find({}, function(err, results){
+  db.Events.find({}, function (err, results){
     // send them as JSON-style string
-    res.send(JSON.stringify(results));
+    res.send(results);
   })
 });
 
@@ -103,9 +103,9 @@ app.post("/events", function (req, res){
   // find new event in the req.body
   var newEvent = req.body;
   // add the new event to our db (mongoose will give it an _id)
-  db.Events.create(newEvent);
-  // respond with the created object as json string
-  res.send(JSON.stringify(newEvent));
+  db.Events.create(newEvent, function (err, event){
+    res.send(204);
+  });
 });
 
 app.delete("/events/:id", function (req, res){
@@ -121,7 +121,13 @@ app.delete("/events/:id", function (req, res){
 
 // have same template as login
 app.get("/", function(req, res) {
-    res.sendFile(path.join(views, "Htmls/home1.html"));
+    req.currentUser(function(err, user){
+      if (user){
+        res.redirect("/home");
+      } else {
+        res.sendFile(path.join(views, "Htmls/home1.html"));
+      }; 
+    });
 });
 
 // add unique user to database
@@ -129,14 +135,14 @@ app.post("/signup", function(req, res) {
     var user = req.body.user;
     db.User.
     createSecure(user.email, user.password,
-        function (err, user) {
-          if (!err){
-            req.login(user);
-            res.redirect("/home");
-          } else {
-            res.redirect("/");
-          }
-        });
+      function (err, user) {
+        if (!err){
+          req.login(user);
+          res.redirect("/home");
+        } else {
+          res.redirect("/");
+        };
+      });
 });
 
 app.post("/login", function(req, res) {
@@ -144,18 +150,17 @@ app.post("/login", function(req, res) {
     console.log(user);
     db.User
         .authenticate(user.email, user.password,
-            function (err, user) {
-              console.log("LOGGING IN!");
-              if (!err){
-                req.login(user);
-                res.redirect("/home");
-              } 
-    });
+          function (err, user) {
+            console.log("LOGGING IN!");
+            if (!err){
+              req.login(user);
+              res.redirect("/home");
+            } 
+          });
 });
 
 app.get("/login", function(req, res) {
     res.sendFile(path.join(views, "Htmls/home.html"));
-
 });
 
 // logout
