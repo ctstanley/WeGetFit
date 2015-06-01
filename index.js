@@ -82,7 +82,13 @@ addPosts(events);
 
 // Make connection to main page
 app.get("/home", function(req, res) {
-    res.sendFile(path.join(views, "Htmls/home.html"));
+    req.currentUser(function(err, user){
+      if (user){
+        res.sendFile(path.join(views, "Htmls/home.html"));
+      } else {
+        res.redirect("/");
+      };
+    });
 });
 
 app.get("/events", function (req, res){
@@ -121,7 +127,6 @@ app.get("/", function(req, res) {
 // add unique user to database
 app.post("/signup", function(req, res) {
     var user = req.body.user;
-    console.log(user);
     db.User.
     createSecure(user.email, user.password,
         function (err, user) {
