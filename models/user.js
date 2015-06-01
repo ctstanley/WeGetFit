@@ -10,7 +10,6 @@ var userSchema = new mongoose.Schema({
 // signup
 userSchema.statics.createSecure = function(email, password, cb) {
     var that = this;
-    
     // saves the user email and hashes the password
     bcrypt.genSalt(function(err, salt) {
         bcrypt.hash(password, salt, function(err, hash) {
@@ -20,7 +19,7 @@ userSchema.statics.createSecure = function(email, password, cb) {
                 passwordDigest: hash
             }, cb)
         });
-    })
+    });
 };
 
 userSchema.statics.encryptPassword = function(password) {
@@ -39,10 +38,10 @@ userSchema.statics.authenticate = function(email, password, cb) {
                 console.log("Username does not exist");
             } else if (user.checkPassword(password)) { // verify password
                 cb(null, user); // send back that user
-            }
+            };
+        });
+};
 
-        })
-}
 userSchema.methods.checkPassword = function(password) {
     return bcrypt.compareSync(password, this.passwordDigest);
 };
